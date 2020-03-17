@@ -1,6 +1,5 @@
 # 0x10. C - printf
-## Sebastián Escobar Jimenez, Camilo Andrés Pulgarín
-### _printf
+## _printf
 A function that sends to stdout a formated string of characters. This function is based on GNU printf.
 
 The syntax of the function is as follow:
@@ -38,3 +37,5 @@ $ gcc -Wall -Werror -Wextra -pedantic *.c
 
 - Sebastián Escobar Jimenez. Github: https://github.com/Katorea132
 - Camilo Andrés Pulgarín. Github: https://github.com/camilo620
+
+Check out our other projects!

@@ -9,8 +9,6 @@ int _printf(const char *format, ...)
 {
 	va_list arg;
 	unsigned int i, j, cnt = 0, flag, b = 1;
-	const unsigned int BUFF = 1024;
-	char *buffer = malloc(sizeof(char) * BUFF);
 	frm form[] = {
 		{"c", handc}, {"s", hands}, {"d", handi}, {"i", handi}, {"b", handb},
 		{"S", handS}, {"r", handr}, {"R", handR}, {"x", handx}, {"X", handX},
@@ -40,6 +38,6 @@ int _printf(const char *format, ...)
 		else
 			_putchar(format[i]), cnt += 1, i = i + b;
 	}
-	va_end(arg), free(buffer);
+	va_end(arg);
 	return (cnt);
 }
