@@ -122,7 +122,7 @@ int handx(va_list arg)
 }
 /**
  * handX - handles hexadecimal in upper case
- * @arg: Holds the arguments
+ * @arg: Holds the argument
  * Return: number of characters
  */
 int handX(va_list arg)

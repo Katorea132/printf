@@ -8,7 +8,7 @@
 int _printf(const char *format, ...)
 {
 	va_list arg;
-	unsigned int i, j, cnt = 0, flag;
+	unsigned int i, j, cnt = 0, flag, b = 1;
 	const unsigned int BUFF = 1024;
 	char *buffer = malloc(sizeof(char) * BUFF);
 	frm form[] = {
@@ -17,25 +17,28 @@ int _printf(const char *format, ...)
 		{"o", hando}, {"u", handu}, {"p", handp}, {0, 0}
 	};
 
-	if (format == 0 || (format[0] == '%' && format[1] == 0))
+	if (format == 0)
 		return (-1);
 	va_start(arg, format);
-	for (i = 0; format[i] != 0; i++)
-	{
-		if (format[i] == '%' && format[i + 1] == '%')
-			_putchar('%'), i++, cnt += 1;
+	for (i = 0; format[i] != 0;)
+	{	if (format[i] == '%' && format[i + b] == 0)
+			return (-1);
+		else if (format[i] == '%' && format[i + b] == ' ')
+			b++;
+		else  if (format[i] == '%' && format[i + b] == '%')
+			_putchar('%'), i++, cnt += 1, b = 1;
 		else if (format[i] == '%')
 		{
-			if (format[i + 1] == 0)
+			if (format[i + b] == 0)
 				return (-1);
 			for (j = 0, flag = 0; form[j].op != 0; j++)
-				if (format[i + 1] == form[j].op[0])
-					cnt += form[j].p(arg), flag = 1, i++;
+				if (format[i + b] == form[j].op[0])
+					cnt += form[j].p(arg), flag = 1, i += b + 1, b = 1;
 			if (flag == 0)
-				_putchar(format[i]), cnt += 1;
+				_putchar(format[i]), cnt += 1, i++;
 		}
 		else
-			_putchar(format[i]), cnt += 1;
+			_putchar(format[i]), cnt += 1, i = i + b;
 	}
 	va_end(arg), free(buffer);
 	return (cnt);

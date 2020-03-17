@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <limits.h>
 /**
- * struct formats - Struct for formats
+ * struct formats - Struct for formatss
  * @op: The format
  * @p: The function
  */

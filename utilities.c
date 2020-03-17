@@ -50,7 +50,7 @@ char *dectohex(unsigned int d, int flag)
 	return (s);
 }
 /**
- * ultohex - Converts an unsigned long to hexadecimal
+ * ultohex - Converts an unsigned long to hexadecimals
  * @d: Holds the decimal
  * @flag: Determines if upper case or not
  * Return: a pointer to an array of the hexa values
