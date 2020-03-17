@@ -1,0 +1,68 @@
+.TH man 3 "16 March 2020" "1.0" "_printf man page"
+.SH Name
+.B _printf
+- send to stdout a formated string of characters
+.SH SYNOPSIS
+#include "holberton.h"
+.br
+\fIint\fR
+.br
+.B printf (\fIconst\fR \fIchar\fR \fI*format\fR, \fI...\fR);
+.SH DESCRIPTION
+.B _printf()
+Creates an output and send it to standar output controled by a 
+.I format
+string of characters that declares how arguments are treated before send them to output. 
+When successful, these function return value is the number of characters printed but the null byte at the end of a string.
+
+When there is an error in the function, the return value is
+.B -1.
+.SH Format string
+it is a string of characters that are not %, which are copied into the standard output string. The format has conversion specifications too, each results in specified arguments being converted and replaced in the format string. Each conversion specification is preceeded by a % character followed with the conversion specifier.
+The arguments are used in the order given by the user.
+.SH Conversion specifier
+An option that specifies the type of conversion to be done on the argument. The possible options are:
+.TP
+.BR c
+The argument is converted to an unsigned char, then copied to standard output string. The option is used like this : "%p"
+.TP
+.B s
+The argument (expectod to be a pointer to an array of characters (char *). Characters are copied to standard output string from the array until reaching a terminating null byte (NULL, 0, '\0'), without including it. The option is used like this: "%s"
+.TP
+.B S
+Prints a string. Non printable characters are printed as "\x" followed by their ASCII values in a two digit hexadecimal number. The option is used like this: "%S"
+.TP
+.B d, i
+The argument (expected to be an integer) is converted to decimal notation and copied to standard output string. The option is used like this: "%d"/"%i"
+.TP
+.B x, X
+The argument (expected to be an unsigned integer) is converted to lowercase(x) hexadecimal notation, or uppercase(X) hexadecimal notation and copied into standar output string. The option is used like this: "%x"/"%X"
+.TP
+.B u
+The argument (expected to be of type unsigned int) is converted to decimal notation and copied into standard output string.
+.TP
+.B o, b
+The argument (expected to be an unsigned integer) is converted to octal(o) notation or binary(b) notation and copied into standard output string.The option is used like this: "%o"/"b"
+.TP
+.B r
+Copy an argument (expected to be a string (char *)) to standard output string, but in reverse. The option is used like this: "%r"
+.TP
+.B R
+Translate an argument (expected to be string (char *)) into ROT13 notation and copies it into standard output string. The option is used like this: "%R"
+.TP
+.B %
+A '%' character is copied into standard output string without argument conversion or replacement. The option is used like this: "%%"
+.B p
+A memory address in hexadecimal notation is copied into standard output string. The option is used like this: "%p"
+.SH EXAMPLE
+if you want to get the date printed, will be as follow:
+
+#include "holberton.h"
+
+_printf("%s, %s %d, %d\n", weekday, month, day, year);
+.SH SEE ALSO
+.I printf(3)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Sebastián Escobar Jimenez, Camilo Andrés Pulgarín.
