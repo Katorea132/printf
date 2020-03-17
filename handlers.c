@@ -2,88 +2,114 @@
 /**
  * handc - handles chars
  * @arg: Holds the arguments
+ * @buffer: buffer of memory
+ * @n: number of characters
  * Return: number of characters
  */
-int handc(va_list arg)
+int handc(va_list arg, char *buffer, int n)
 {
-	_putchar(va_arg(arg, int));
-	return (1);
+	buffer[n] = va_arg(arg, int);
+	return (n + 1);
 }
 /**
  * hands - handles strings
  * @arg: Holds the arguments
+ * @buffer: buffer of memory
+ * @n: counter of characters
  * Return: number of characters
  */
-int hands(va_list arg)
+int hands(va_list arg, char *buffer, int n)
 {
-	unsigned int i;
-	char *s;
+	int i;
+	char *s = va_arg(arg, char *);
 
-	s = va_arg(arg, char  *);
 	if (s == 0)
+	{
 		s = "(null)";
+		for (i = 0; s[i] != 0; i++)
+		{
+			buffer[n] = s[i];
+			n++;
+		}
+		return (n);
+	}
 	for (i = 0; s[i] != 0; i++)
-		_putchar(s[i]);
-	return (i);
+	{
+		buffer[n] = s[i];
+		n++;
+	}
+	return (n);
 }
 /**
- * handi - handles integers and doubles
+ * handi - handles integers
  * @arg: Holds the arguments
+ * @buffer: buffer of memory
+ * @n: number of characters
  * Return: number of characters
  */
-int handi(va_list arg)
+int handi(va_list arg, char *buffer, int n)
 {
-	int n, i, j, k, l = 1;
-	unsigned int temp;
+	int num, i, j;
+	unsigned int num2;
+	int x = 1;
 
-	i = 0;
-	n = va_arg(arg, int);
-	if (n < 0)
-	{
-		n = -1 * n;
-		_putchar('-');
-		i++;
-	}
-	temp = n;
+	num = va_arg(arg, int);
 
-	for (j = 0; n / 10 != 0; j++)
-		n = n / 10;
-	for (k = 0; k <= j - 1; k++)
-		l = l * 10;
-	for (; l != 0;)
+	if (num < 0)
 	{
-		_putchar((temp / l) + '0');
-		temp = temp % l;
-		l = l / 10;
-		i++;
+		num = -1 * num;
+		buffer[n] = '-';
+		n++;
 	}
-	return (i);
+	num2 = num;
+
+	for (i = 0; num / 10 != 0; i++)
+	{
+		num = num / 10;
+	}
+	for (j = 0; j <= i - 1; j++)
+	{
+		x = x * 10;
+	}
+
+	for (; x != 0;)
+	{
+		buffer[n] = (num2 / x) + '0';
+		num2 = num2 % x;
+		x = x / 10;
+		n;
+	}
+	return (n);
 }
 /**
  * handb - Handles binaries
  * @arg: Holds the argument
+ * @buffer: buffer of memory
+ * @n: number of characters
  * Return: Number of characters
  */
-int handb(va_list arg)
+int handb(va_list arg, char *buffer, int n)
 {
-	unsigned int i = va_arg(arg, unsigned int);
-	int j, b;
-	int *array;
+	unsigned int num = va_arg(arg, unsigned int);
+	int i, j;
+	char resl[300];
 
-	if (i == 0)
+	if (num == 0)
 	{
-		_putchar('0');
-		return (1);
+		buffer[n] = '0';
+		return (n + 1);
 	}
-	for (j = 0, b = i; b != 0; j++, b /= 2)
-		;
-	array = malloc(j * sizeof(unsigned int));
-	if (array == 0)
-		return (0);
-	for (b = j - 1; i > 0; i /= 2, j--)
-		array[j] = i % 2;
-	for (j = 0; j <= b; j++)
-		_putchar(array[j + 1] + '0');
-	free(array);
-	return (b + 1);
+
+	for (i = 0; num != 0; i++)
+	{
+		resl[i] = (num % 2) + '0';
+		num = num / 2;
+	}
+
+	for (j = i - 1; j >= 0; j--)
+	{
+		buffer[n] = resl[j];
+		n++;
+	}
+	return (n);
 }
