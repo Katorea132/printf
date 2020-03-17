@@ -38,3 +38,5 @@ $ gcc -Wall -Werror -Wextra -pedantic *.c
 
 - Sebastián Escobar Jimenez. Github: https://github.com/Katorea132
 - Camilo Andrés Pulgarín. Github: https://github.com/camilo620
+
+Check out our other projects!
