@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
  * _printf - Prints with formats to screen
- * @format: Holds such formats
+ * @format: Holds such formats.
  * @...: Many more arguments :D
  * Return: -1 on failure, number of printed chars on success
  */
