@@ -27,73 +27,36 @@ int hands(va_list arg)
 	return (i);
 }
 /**
- * handd - handles doubles
- * @arg: Holds the arguments
- * Return: number of characters
- */
-int handd(va_list arg)
-{
-	int n = va_arg(arg, int);
-	int num, dig, exp = 1, i = 1;
-	int last = n % 10;
-
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
-	{
-		_putchar('-');
-		num *= -1, n *= -1, last *= -1;
-		i++;
-	}
-	if (num > 0)
-	{
-		for (; num / 10; num /= 10)
-			exp *= 10;
-		num = n;
-		for (; exp > 0; exp /= 10, i++)
-		{
-			dig = num / exp;
-			_putchar(dig + '0');
-			num -= (dig * exp);
-		}
-	}
-	_putchar(last + '0');
-	return (i);
-}
-/**
- * handi - handles integers
+ * handi - handles integers and doubles
  * @arg: Holds the arguments
  * Return: number of characters
  */
 int handi(va_list arg)
 {
-	int n = va_arg(arg, int), num, last = n % 10;
-	int dig, exp = 1, i = 1;
+	int n, i, j, k, l = 1;
+	unsigned int temp;
 
-	n /= 10;
-	num = n;
-	if (last < 0)
+	i = 0;
+	n = va_arg(arg, int);
+	if (n < 0)
 	{
+		n = -1 * n;
 		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
 		i++;
 	}
-	if (num > 0)
+	temp = n;
+
+	for (j = 0; n / 10 != 0; j++)
+		n = n / 10;
+	for (k = 0; k <= j - 1; k++)
+		l = l * 10;
+	for (; l != 0;)
 	{
-		for (; num / 10 != 0; num /= 10)
-			exp *= 10;
-		num = n;
-		for (; exp > 0; exp /= 10, i++)
-		{
-			dig = num / exp;
-			_putchar(dig + '0');
-			num = num - (dig * exp);
-		}
+		_putchar((temp / l) + '0');
+		temp = temp % l;
+		l = l / 10;
+		i++;
 	}
-	_putchar(last + '0');
 	return (i);
 }
 /**
@@ -107,9 +70,14 @@ int handb(va_list arg)
 	int j, b;
 	int *array;
 
-	for (j = 0, b = i; b > 0; j++, b /= 2)
+	if (i == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
+	for (j = 0, b = i; b != 0; j++, b /= 2)
 		;
-	array = malloc(j * sizeof(int));
+	array = malloc(j * sizeof(unsigned int));
 	if (array == 0)
 		return (0);
 	for (b = j - 1; i > 0; i /= 2, j--)

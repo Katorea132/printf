@@ -10,9 +10,9 @@
 .B printf (\fIconst\fR \fIchar\fR \fI*format\fR, \fI...\fR);
 .SH DESCRIPTION
 .B _printf()
-Creates an output and send it to standar output controled by a 
+Creates an output and send it to standar output controled by a
 .I format
-string of characters that declares how arguments are treated before send them to output. 
+string of characters that declares how arguments are treated before send them to output.
 When successful, these function return value is the number of characters printed but the null byte at the end of a string.
 
 When there is an error in the function, the return value is

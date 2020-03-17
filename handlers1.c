@@ -11,13 +11,19 @@ int handS(va_list arg)
 
 	s = va_arg(arg, char  *);
 	if (s == 0)
-		s = "(null)";
+		return (0);
 	for (i = 0; s[i] != 0; i++)
 	{
 		if ((s[i] >= 0 && s[i] < 32) || s[i] >= 127)
 		{
 			_putchar('\\');
 			_putchar('x');
+			if (d == 0)
+			{
+				_putchar('0');
+				_putchar('0');
+				return (4);
+			}
 			d = dectohex(s[i], 1);
 			if (d[1] == 0)
 				_putchar('0');
@@ -67,10 +73,12 @@ int handR(va_list arg)
 
 	s = va_arg(arg, char  *);
 	if (s == 0)
-		s = "(null)";
+		return (0);
 	for (itmp = 0; s[itmp] != 0; itmp++)
 		;
 	tmp = malloc(sizeof(char) * itmp);
+	if (tmp == 0)
+		return (0);
 	for (i = 0; s[i] != 0; i++)
 	{
 		tmp[i] = s[i];
@@ -99,6 +107,11 @@ int handx(va_list arg)
 	int i, tmp;
 	char *s;
 
+	if (d == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
 	s = dectohex(d, 0);
 	for (i = 0; s[i] != 0; i++)
 		;
@@ -118,6 +131,11 @@ int handX(va_list arg)
 	int i, tmp;
 	char *s;
 
+	if (d == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
 	s = dectohex(d, 1);
 	for (i = 0; s[i] != 0; i++)
 		;

@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 /**
  * struct formats - Struct for formats
  * @op: The format
@@ -20,7 +21,6 @@ char *dectohex(unsigned int d, int flag);
 char *ultohex(unsigned long int d, int flag);
 int handc(va_list arg);
 int hands(va_list arg);
-int handd(va_list arg);
 int handi(va_list arg);
 int handb(va_list arg);
 int handS(va_list arg);

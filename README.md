@@ -3,7 +3,7 @@
 ### _printf
 A function that sends to stdout a formated string of characters. This function is based on GNU printf.
 
-The syntax of the function is as follow: 
+The syntax of the function is as follow:
 **syntax:** `int _printf(const char *format, ...);
 
 You need to install our holberton.h library in order to work with this function.

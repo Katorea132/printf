@@ -10,6 +10,11 @@ int hando(va_list arg)
 	unsigned int j, b;
 	unsigned int *array;
 
+	if (i == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
 	for (j = 0, b = i; b > 0; j++, b /= 8)
 		;
 	array = malloc(j * sizeof(unsigned int));
@@ -60,6 +65,13 @@ int handp(va_list arg)
 	int i, tmp;
 	char *s;
 
+	if (d == 0)
+	{
+		_putchar('0');
+		_putchar('x');
+		_putchar('0');
+		return (3);
+	}
 	s = ultohex(d, 0);
 	for (i = 0; s[i] != 0; i++)
 		;
