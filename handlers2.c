@@ -2,9 +2,11 @@
 /**
  * hando - Handles octals
  * @arg: Holds the argument
+ * @buffer: Holds the buffer
+ * @n: Holds the counter
  * Return: Number of characters
  */
-int hando(va_list arg)
+int hando(va_list arg, char *buffer, int n)
 {
 	unsigned int i = va_arg(arg, unsigned int);
 	unsigned int j, b;
@@ -30,9 +32,11 @@ int hando(va_list arg)
 /**
  * handu - handles unsigneds
  * @arg: Holds the arguments
+ * @buffer: Holds the buffer
+ * @n: Holds the counter
  * Return: number of characters
  */
-int handu(va_list arg)
+int handu(va_list arg, char *buffer, int n)
 {
 	unsigned int n = va_arg(arg, int), num, last = n % 10;
 	unsigned int dig, exp = 1, i = 1;
@@ -57,9 +61,11 @@ int handu(va_list arg)
 /**
  * handp - handles hexadecimal in upper case
  * @arg: Holds the arguments
+ * @buffer: Holds the buffer
+ * @n: Holds the counter
  * Return: number of characters
  */
-int handp(va_list arg)
+int handp(va_list arg, char *buffer, int n)
 {
 	unsigned long int d = va_arg(arg, unsigned long);
 	int i, tmp;

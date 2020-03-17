@@ -2,9 +2,11 @@
 /**
  * handS - handles strings with special characters
  * @arg: Holds the arguments
+ * @buffer: Holds the buffer
+ * @n: Holds the counter
  * Return: number of characters
  */
-int handS(va_list arg)
+int handS(va_list arg, char *buffer, int n)
 {
 	unsigned int i, b = 0;
 	char *s, *d;
@@ -42,105 +44,126 @@ int handS(va_list arg)
 /**
  * handr - handles strings
  * @arg: Holds the arguments
+ * @buffer: Holds the buffer
+ * @n: Holds the actual counter
  * Return: number of characters
  */
-int handr(va_list arg)
+int handr(va_list arg, char *buffer, int n)
 {
-	unsigned int i, b;
+	unsigned int i, j;
 	char *s;
+	char nu[7] = "(null)";
 
 	s = va_arg(arg, char  *);
 	if (s == 0)
-		s = "(null)";
+	{
+		for (i = 0; i < 6; i++, n++)
+			buffer[n] = nu[i];
+		return (n);
+	}
 	for (i = 0; s[i] != 0; i++)
 		;
-	for (b = i; b >= 1; b--)
-		_putchar(s[b - 1]);
-	return (i);
+	for (j = i - 1; j >= 0; j--, n++)
+		buffer[n] = s[j];
+	return (n);
 }
 /**
  * handR - handles rot13 encription.
  * @arg: Holds the arguments
+ * @buffer: Holds the buffer
+ * @n: Holds the actual counter
  * Return: number of characters
  */
-int handR(va_list arg)
+int handR(va_list arg, char *buffer, int n)
 {
-	unsigned int itmp, i, j, k = 0;
+	unsigned int i, j;
 	char *s;
 	char d[] = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
 	char e[] = "nNoOpPqQrRsStTuUvVwWxXyYzZaAbBcCdDeEfFgGhHiIjJkKlLmM";
-	char *tmp;
 
 	s = va_arg(arg, char  *);
-	if (s == 0)
-		return (0);
-	for (itmp = 0; s[itmp] != 0; itmp++)
-		;
-	tmp = malloc(sizeof(char) * itmp);
-	if (tmp == 0)
-		return (0);
 	for (i = 0; s[i] != 0; i++)
 	{
-		tmp[i] = s[i];
-		for (j = 0; d[j]; j++)
-		{
-			if (tmp[i] == d[j])
+		for (j = 0; d[j] != 0; j++)
+			if (d[j] == s[i])
 			{
-				k = j;
-				tmp[i] = e[k];
+				buffer[n] = e[j];
+				n++;
 				break;
 			}
+		if (d[j] != s[i])
+		{
+			buffer[n] = s[i];
+			n++;
 		}
-		_putchar(tmp[i]);
 	}
-	free(tmp);
-	return (i);
+	return (n);
 }
 /**
  * handx - handles hexadecimal in lower case
  * @arg: Holds the arguments
+ * @buffer: Holds the buffer
+ * @n: Holds the counter
  * Return: number of characters
  */
-int handx(va_list arg)
+int handx(va_list arg, char *buffer, int n)
 {
 	unsigned int d = va_arg(arg, unsigned int);
-	int i, tmp;
-	char *s;
+	int i, j, tmp;
+	char s[200];
 
 	if (d == 0)
 	{
-		_putchar('0');
-		return (1);
+		buffer[n] = '0';
+		return (n + 1);
 	}
-	s = dectohex(d, 0);
-	for (i = 0; s[i] != 0; i++)
-		;
-	for (tmp = i; tmp >= 0; tmp--)
-		_putchar(s[tmp - 1]);
-	free(s);
-	return (i);
+	for (i = 0, tmp = 0; d != 0; i++)
+	{
+		tmp = d % 16;
+		if (tmp < 10)
+			s[i] = tmp + 48;
+		else
+			s[i] = tmp + 87;
+		d /= 16;
+	}
+	for (j = i - 1; j >= 0; j--)
+	{
+		buffer[n] = s[j];
+		n++;
+	}
+	return (n);
 }
 /**
  * handX - handles hexadecimal in upper case
  * @arg: Holds the argument
+ * @buffer: Holds the buffer
+ * @n: Holds the counter
  * Return: number of characters
  */
-int handX(va_list arg)
+int handX(va_list arg, char *buffer, int n)
 {
 	unsigned int d = va_arg(arg, unsigned int);
-	int i, tmp;
-	char *s;
+	int i, j, tmp;
+	char s[200];
 
 	if (d == 0)
 	{
-		_putchar('0');
-		return (1);
+		buffer[n] = '0';
+		return (n + 1);
 	}
-	s = dectohex(d, 1);
-	for (i = 0; s[i] != 0; i++)
-		;
-	for (tmp = i; tmp >= 0; tmp--)
-		_putchar(s[tmp - 1]);
-	free(s);
-	return (i);
+	for (i = 0, tmp = 0; d != 0; i++)
+	{
+		tmp = d % 16;
+		if (tmp < 10)
+			s[i] = tmp + 48;
+		else
+			s[i] = tmp + 55;
+		d /= 16;
+	}
+	for (j = i - 1; j >= 0; j--)
+	{
+		buffer[n] = s[j];
+		n++;
+	}
+	return (n);
 }
