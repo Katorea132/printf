@@ -12,6 +12,12 @@ int hando(va_list arg, char *buffer, int n)
 	int i, j;
 	char resl[300];
 
+	if (num == 0)
+	{
+		buffer[n] = '0';
+		return (n + 1);
+	}
+
 	for (i = 0; num != 0; i++)
 	{
 		resl[i] = (num % 8) + '0';
@@ -39,6 +45,12 @@ int handu(va_list arg, char *buffer, int n)
 	unsigned int x = 1;
 
 	num = va_arg(arg, int);
+
+	if (num == 0)
+	{
+		buffer[n] = '0';
+		return (n + 1);
+	}
 
 
 	num2 = num;
