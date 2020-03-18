@@ -8,59 +8,57 @@
  */
 int hando(va_list arg, char *buffer, int n)
 {
-	unsigned int i = va_arg(arg, unsigned int);
-	unsigned int j, b;
-	unsigned int *array;
+	unsigned int num = va_arg(arg, unsigned int);
+	int i, j;
+	char resl[300];
 
-	buffer[n] = '0';
-
-	if (i == 0)
+	for (i = 0; num != 0; i++)
 	{
-		_putchar('0');
-		return (1);
+		resl[i] = (num % 8) + '0';
+		num = num / 8;
 	}
-	for (j = 0, b = i; b > 0; j++, b /= 8)
-		;
-	array = malloc(j * sizeof(unsigned int));
-	if (array == 0)
-		return (0);
-	for (b = j - 1; i > 0; i /= 8, j--)
-		array[j] = i % 8;
-	for (j = 0; j <= b; j++)
-		_putchar(array[j + 1] + '0');
-	free(array);
-	return (b + 1);
+
+	for (j = i - 1; j >= 0; j--)
+	{
+		buffer[n] = resl[j];
+		n++;
+	}
+	return (n);
 }
 /**
  * handu - handles unsigneds
  * @arg: Holds the arguments
  * @buffer: Holds the buffer
- * @d: Holds the counter
+ * @n: Holds the counter
  * Return: number of characters
  */
-int handu(va_list arg, char *buffer, int d)
+int handu(va_list arg, char *buffer, int n)
 {
-	unsigned int n = va_arg(arg, int), num, last = n % 10;
-	unsigned int dig, exp = 1, i = 1;
+	unsigned int num, i, j;
+	unsigned int num2;
+	unsigned int x = 1;
 
-	buffer[d] = '0';
+	num = va_arg(arg, int);
 
-	n /= 10;
-	num = n;
-	if (num > 0)
+
+	num2 = num;
+	for (i = 0; num / 10 != 0; i++)
 	{
-		for (; num / 10 != 0; num /= 10)
-			exp *= 10;
-		num = n;
-		for (; exp > 0; exp /= 10, i++)
-		{
-			dig = num / exp;
-			_putchar(dig + '0');
-			num = num - (dig * exp);
-		}
+		num = num / 10;
 	}
-	_putchar(last + '0');
-	return (i);
+	for (j = 0; j <= i - 1; j++)
+	{
+		x = x * 10;
+	}
+
+	for (; x != 0;)
+	{
+		buffer[n] = (num2 / x) + '0';
+		num2 = num2 % x;
+		x = x / 10;
+		n++;
+	}
+	return (n);
 }
 /**
  * handp - handles hexadecimal in upper case
