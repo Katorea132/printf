@@ -11,7 +11,7 @@ int _putchar(char c)
 /**
  * dectohex - Converts a decimal to hexadecimal
  * @d: Holds the decimal
- * @flag: Determines if upper case or not
+ * @flag: Determines if uppercase or not
  * Return: a pointer to an array of the hexa values
  */
 char *dectohex(unsigned int d, int flag)
