@@ -39,7 +39,7 @@ The argument (expected to be an integer) is converted to decimal notation and co
 The argument (expected to be an unsigned integer) is converted to lowercase(x) hexadecimal notation, or uppercase(X) hexadecimal notation and copied into standar output string. The option is used like this: "%x"/"%X"
 .TP
 .B u
-The argument (expected to be of type unsigned int) is converted to decimal notation and copied into standard output string.
+The argument (expected to be of type unsigned int) is converted to decimal notation and copied into standard output string. The option is used like this: "%u"
 .TP
 .B o, b
 The argument (expected to be an unsigned integer) is converted to octal(o) notation or binary(b) notation and copied into standard output string.The option is used like this: "%o"/"b"
