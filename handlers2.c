@@ -75,16 +75,21 @@ int handp(va_list arg, char *buffer, int n)
 	long int i, j, tmp;
 	char s[200];
 	char x[] = "0x";
+	char y[] = "(nil)";
 
+	if (d == 0)
+	{
+		for (i = 0; y[i] != 0; i++)
+		{
+			buffer[n] = y[i];
+			n++;
+		}
+		return (n);
+	}
 	for (i = 0; x[i] != 0; i++)
 	{
 		buffer[n] = x[i];
 		n++;
-	}
-	if (d == 0)
-	{
-		buffer[n] = '0';
-		return (n + 1);
 	}
 	for (i = 0, tmp = 0; d != 0; i++)
 	{
