@@ -66,3 +66,4 @@ _printf("%s, %s %d, %d\n", weekday, month, day, year);
 No known bugs.
 .SH AUTHOR
 Sebastián Escobar Jimenez, Camilo Andrés Pulgarín.
+For Holberton School.
