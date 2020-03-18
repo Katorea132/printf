@@ -8,40 +8,45 @@
  */
 int handS(va_list arg, char *buffer, int n)
 {
-	unsigned int i, b = 0;
-	char *s, *d;
+	char *s = NULL;
+	unsigned int dec, temp;
+	int i, j, h;
+	char nu[7] = "(null)";
+	char hex[20];
 
-	buffer[n] = '0';
-
-	s = va_arg(arg, char  *);
-	if (s == 0)
-		return (0);
-	for (i = 0; s[i] != 0; i++)
+	s = va_arg(arg, char *);
+	if (s == NULL)
 	{
-		if ((s[i] >= 0 && s[i] < 32) || s[i] >= 127)
+		for (i = 0; i < 6; i++)
+			buffer[n++] = nu[i];
+		return (n);
+	}
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if ((s[i] >= 0 && s[i] <= 31) || (s[i] >= 127))
 		{
-			_putchar('\\');
-			_putchar('x');
-			if (d == 0)
+			buffer[n++] = '\\';
+			buffer[n++] = 'x';
+			dec = s[i] - 0;
+			if (dec <= 15)
+				buffer[n++] = '0';
+			for (h = 0; dec != 0; h++)
 			{
-				_putchar('0');
-				_putchar('0');
-				return (4);
+				temp = 0;
+				temp = dec % 16;
+				if (temp < 10)
+					hex[h] = temp + 48;
+				else
+					hex[h] = temp + 55;
+				dec = dec / 16;
 			}
-			d = dectohex(s[i], 1);
-			if (d[1] == 0)
-				_putchar('0');
-			else
-				_putchar(d[1]);
-			_putchar(d[0]);
-			free(d);
-			b += 2;
+			for (j = h - 1; j >= 0; j--)
+				buffer[n++] = hex[j];
 		}
 		else
-			_putchar(s[i]);
+			buffer[n++] = s[i];
 	}
-	b += i;
-	return (b);
+	return (n);
 }
 /**
  * handr - handles strings
