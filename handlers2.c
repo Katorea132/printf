@@ -51,6 +51,11 @@ int handu(va_list arg, char *buffer, int n)
 		buffer[n] = '0';
 		return (n + 1);
 	}
+	if (num == 1)
+	{
+		buffer[n] = '1';
+		return (n + 1);
+	}
 
 
 	num2 = num;
