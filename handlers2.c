@@ -72,27 +72,35 @@ int handu(va_list arg, char *buffer, int d)
 int handp(va_list arg, char *buffer, int n)
 {
 	unsigned long int d = va_arg(arg, unsigned long);
-	int i, tmp;
-	char *s;
+	long int i, j, tmp;
+	char s[200];
+	char x[] = "0x";
 
-	buffer[n] = '0';
-
+	for (i = 0; x[i] != 0; i++)
+	{
+		buffer[n] = x[i];
+		n++;
+	}
 	if (d == 0)
 	{
-		_putchar('0');
-		_putchar('x');
-		_putchar('0');
-		return (3);
+		buffer[n] = '0';
+		return (n + 1);
 	}
-	s = ultohex(d, 0);
-	for (i = 0; s[i] != 0; i++)
-		;
-	_putchar('0');
-	_putchar('x');
-	for (tmp = i; tmp >= 0; tmp--)
-		_putchar(s[tmp - 1]);
-	free(s);
-	return (i + 2);
+	for (i = 0, tmp = 0; d != 0; i++)
+	{
+		tmp = d % 16;
+		if (tmp < 10)
+			s[i] = tmp + 48;
+		else
+			s[i] = tmp + 87;
+		d /= 16;
+	}
+	for (j = i - 1; j >= 0; j--)
+	{
+		buffer[n] = s[j];
+		n++;
+	}
+	return (n);
 }
 /**
  * handv - handles percentage

@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 
 	if (format == 0)
 		return (-1);
-	buffer = malloc(sizeof(char) * 5024);
+	buffer = malloc(sizeof(char) * 9024);
 	if (buffer == 0)
 		return (-1);
 	for (i = 0; format[i] != 0; i++)
