@@ -31,4 +31,5 @@ int handX(va_list arg, char *, int);
 int hando(va_list arg, char *, int);
 int handu(va_list arg, char *, int);
 int handp(va_list arg, char *, int);
+int handv(va_list arg, char *, int);
 #endif

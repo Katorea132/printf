@@ -11,6 +11,8 @@ int handS(va_list arg, char *buffer, int n)
 	unsigned int i, b = 0;
 	char *s, *d;
 
+	buffer[n] = '0';
+
 	s = va_arg(arg, char  *);
 	if (s == 0)
 		return (0);
@@ -50,7 +52,7 @@ int handS(va_list arg, char *buffer, int n)
  */
 int handr(va_list arg, char *buffer, int n)
 {
-	unsigned int i, j;
+	int i, j;
 	char *s;
 	char nu[7] = "(null)";
 
@@ -63,8 +65,11 @@ int handr(va_list arg, char *buffer, int n)
 	}
 	for (i = 0; s[i] != 0; i++)
 		;
-	for (j = i - 1; j >= 0; j--, n++)
+	for (j = i - 1; j >= 0; j--)
+	{
 		buffer[n] = s[j];
+		n++;
+	}
 	return (n);
 }
 /**

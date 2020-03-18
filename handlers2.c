@@ -12,6 +12,8 @@ int hando(va_list arg, char *buffer, int n)
 	unsigned int j, b;
 	unsigned int *array;
 
+	buffer[n] = '0';
+
 	if (i == 0)
 	{
 		_putchar('0');
@@ -33,13 +35,15 @@ int hando(va_list arg, char *buffer, int n)
  * handu - handles unsigneds
  * @arg: Holds the arguments
  * @buffer: Holds the buffer
- * @n: Holds the counter
+ * @d: Holds the counter
  * Return: number of characters
  */
-int handu(va_list arg, char *buffer, int n)
+int handu(va_list arg, char *buffer, int d)
 {
 	unsigned int n = va_arg(arg, int), num, last = n % 10;
 	unsigned int dig, exp = 1, i = 1;
+
+	buffer[d] = '0';
 
 	n /= 10;
 	num = n;
@@ -71,6 +75,8 @@ int handp(va_list arg, char *buffer, int n)
 	int i, tmp;
 	char *s;
 
+	buffer[n] = '0';
+
 	if (d == 0)
 	{
 		_putchar('0');
@@ -87,4 +93,16 @@ int handp(va_list arg, char *buffer, int n)
 		_putchar(s[tmp - 1]);
 	free(s);
 	return (i + 2);
+}
+/**
+ * handv - handles percentage
+ * @arg: Holds the arguments
+ * @b: Holds the buffer
+ * @n: Holds the counter
+ * Return: number of characters
+ */
+int handv(va_list arg __attribute__((__unused__)), char *b, int n)
+{
+	b[n] = '%';
+	return (n + 1);
 }

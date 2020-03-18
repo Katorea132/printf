@@ -77,7 +77,7 @@ int handi(va_list arg, char *buffer, int n)
 		buffer[n] = (num2 / x) + '0';
 		num2 = num2 % x;
 		x = x / 10;
-		n;
+		n++;
 	}
 	return (n);
 }

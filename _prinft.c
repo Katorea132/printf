@@ -8,12 +8,12 @@
 int _printf(const char *format, ...)
 {
 	va_list arg;
-	unsigned int i, j, cnt = 0, flag = 0, k = 13;
+	unsigned int i, j, cnt = 0, flag = 0;
 	char *buffer;
 	frm form[] = {
 		{"c", handc}, {"s", hands}, {"d", handi}, {"i", handi}, {"b", handb},
 		{"S", handS}, {"r", handr}, {"R", handR}, {"x", handx}, {"X", handX},
-		{"o", hando}, {"u", handu}, {"p", handp}, {0, 0}
+		{"o", hando}, {"u", handu}, {"p", handp}, {"%", handv}, {0, 0}
 	};
 	va_start(arg, format);
 
@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 				return (-1);
 			i++;
 			for (j = 0; form[j].op != 0; j++)
-				if (form[j].op == format[i])
+				if (form[j].op[0] == format[i])
 					cnt = form[j].p(arg, buffer, cnt), flag = 1;
 			if (flag == 0)
 			{
