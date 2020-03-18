@@ -5,7 +5,7 @@ A function that sends to stdout a formated string of characters. This function i
 The syntax of the function is as follow:
 **syntax:** `int _printf(const char *format, ...);
 
-You need to install our holberton.h library in order to work with this function.
+You need to install our `holberton.h` library in order to work with this function.
 
 the format converters accepted are:
 
