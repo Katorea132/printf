@@ -8,7 +8,7 @@
 /**
  * struct formats - Struct for formatss
  * @op: The format
- * @p: The function
+ * @p: The hander function
  */
 typedef struct formats
 {
