@@ -44,7 +44,7 @@ int handu(va_list arg, char *buffer, int n)
 	unsigned int num2;
 	unsigned int x = 1;
 
-	num = va_arg(arg, int);
+	num = va_arg(arg, unsigned int);
 
 	if (num == 0)
 	{
